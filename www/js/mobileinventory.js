@@ -39,12 +39,12 @@ function change_device_from_tab(device_id, to){
     if (to == 'checkedin'){
         swap_buttons(row, 'Checkout', 'Just Returned!', function () { check_out_device(device_id)});
     }else{
-        swap_buttons(row, 'Check it in', 'myself!!', function () { check_in_device(device_id)});
+        swap_buttons(row, 'Check it in', $('#user_nickname').val(), function () { check_in_device(device_id)});
     }
 }
 
 function swap_buttons(row, new_button_txt, second_row_txt, new_function) {
-    row.children('td').eq(1).html(second_row_txt);
+    row.children('td').eq(2).html(second_row_txt);
     row.find('button').html(new_button_txt);
     row.find('button').removeProp('onclick');
     row.find('button').unbind('click');
@@ -56,6 +56,12 @@ function enable_client(){
     $('#client').prop('disabled',!$('#belongs_to_client').is(':checked'));
 }
 
+
+function add_me_to_the_queue(device_id){
+
+}
+
+/* Making sure the device info is loaded everytime */
 $('[data-load-remote]').on('click',function(e) {
     e.preventDefault();
     var $this = $(this);

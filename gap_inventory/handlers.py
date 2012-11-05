@@ -24,8 +24,7 @@ class AddDeviceHandler(webapp2.RequestHandler):
     def render_add_device_page(self, saved=False):
         params = {'non_home':True,
                   'add_device': True,
-                  'saved': saved,
-                  }
+                  'saved': saved }
         add_general_info(params)
         return self.response.write(template.render("templates/add_device.html",params))
 
@@ -65,6 +64,14 @@ class CheckinHandler(webapp2.RequestHandler):
             device.current_state = models.DeviceStates.CHECKED_IN
             device.returned = datetime.datetime.now()
             device.save()
+
+            #Let's register the Returned device
+            checkout_query = models.Check_Out.all()
+            checkout_query.ancestor(device)
+            checkout_query.order("-check_out")
+            for borrow in checkout_query.run(limit=1):
+                borrow.check_in = datetime.datetime.now()
+                borrow.save()
 
             self.response.set_status(202)
 

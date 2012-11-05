@@ -1,5 +1,6 @@
 __author__ = 'bakeneko'
 
+import datetime
 from google.appengine.ext import db
 from google.appengine.api import users
 
@@ -30,7 +31,15 @@ class Device(db.Model):
         """ Return last time somebody used the device """
         value = " - "
         if self.returned:
-            value = "used"
+            date_diff = datetime.datetime.now() - self.returned
+            if date_diff.seconds < 60:
+                value = "%s seconds ago"%date_diff.seconds
+            elif date_diff.seconds < 3600:
+                value = "%s minutes ago"%(date_diff.seconds / 60)
+            elif date_diff.seconds < 86400:
+                value = "%s hours ago"%(date_diff.seconds / 3600)
+            else:
+                value = "%s days ago"%(date_diff.seconds /  86400)
 
         return value
 

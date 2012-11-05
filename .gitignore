@@ -1,0 +1,5 @@
+# Project property files
+.idea
+
+#compiled files
+*.pyc

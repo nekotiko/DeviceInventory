@@ -1,0 +1,27 @@
+<div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">GAP Device Inventory</a>
+            <ul class="nav">
+                <li {% if non_home == None%}class="active" {% endif %} >
+                    <a href="/">Home</a>
+                </li>
+                {% if is_admin %}
+                <li {% if add_device%}class="active" {% endif %} ><a href="adddevice" >Add Device</a></li>
+                {% endif %}
+
+            </ul>
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{user.nickname  }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                       <li><a href="{{logout_url}}"><i class="icon-off"></i>&nbsp;Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

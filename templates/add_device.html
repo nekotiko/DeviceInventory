@@ -1,0 +1,115 @@
+{% include "includes/header.html" %}
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container">
+
+    {% include "includes/nav_bar.html" %}
+    <div class="row-fluid">
+    <div class="span12 ">
+        <h1>Add New Device</h1>
+    </div>
+        {% if saved %}
+        <div class="span12">
+            <div class="alert">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Saved!</strong> Your has been stored!!
+            </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="row-fluid">
+        <form class="form-horizontal" action="/adddevice" method="post">
+        <div class="span12">
+
+                <div class="control-group">
+                    <label class="control-label" for="inputAssetId">Asset ID</label>
+                    <div class="controls">
+                        <input type="text" name="gap_asset_id" id="inputAssetId" placeholder="GAP asset ID" required="true">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="brand">Brand</label>
+                    <div class="controls">
+                        <input type="text" name="brand" id="brand" placeholder="Brand" required="true" data-provide="typeahead" data-items="4" data-source='[
+                            "Samsung","Motorola","Asus","Apple","Verifone","HTC","LG", "Sony"]' />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="family">Family</label>
+                    <div class="controls">
+                        <input type="text" name="family" id="family" placeholder="Family" required="true"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="model">Model</label>
+                    <div class="controls">
+                        <input type="text" name="model" id="model" placeholder="Model" required="true"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="serial_num">Serial Num</label>
+                    <div class="controls">
+                        <input type="text" name="serial_num" id="serial_num" placeholder="Serial Num" required="true"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="imei">IMEI</label>
+                    <div class="controls">
+                        <input type="text" name="imei" id="imei" placeholder="imei"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                        <input type="text" name="password" id="password" placeholder="Password" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="os">OS</label>
+                    <div class="controls">
+                        <input type="text" name="os" id="os" placeholder="OS" required="true"  data-provide="typeahead" data-items="4" data-source='["Android","iOS","Symbian","BlackBerry OS","Windows Phone"]'/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="os_version">OS Version</label>
+                    <div class="controls">
+                        <input type="text" name="os_version" id="os_version" placeholder="OS Version" required="true"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="notes">Notes</label>
+                    <div class="controls">
+                        <textarea name="notes" id="notes" placeholder="Notes" ></textarea>
+
+                    </div>
+
+                </div>
+                <div class="control-group">
+                 <label class="control-label" for="client">Belong to Client</label>
+                 <div class="controls">
+                     <label class="checkbox">
+                         <input type="checkbox"  id="belongs_to_client" onclick="enable_client()"> Belongs to Client
+                     </label>
+                     <input type="text" name="client" id="client" placeholder="Client" disabled="true"  data-provide="typeahead" data-items="4" data-source='["Mobiquity"]'/>
+
+                </div>
+
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+        </form>
+    </div>
+
+</div>
+{% include "includes/footer.html" %}

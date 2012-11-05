@@ -1,0 +1,22 @@
+<div class="row-fluid">
+    <div class="span6"><strong>Name: </strong>{{device.get_device_name}}</div>
+    <div class="span6"><strong>Serial No. </strong>{{device.serial_num}}</div>
+</div>
+<div class="row-fluid">
+    <div class="span6"><strong>IMEI </strong>{{device.imei}}</div>
+    <div class="span6"><strong>Password </strong>{{device.password}}</div>
+</div>
+<div class="row-fluid">
+    <div class="span6"><strong>OS </strong> {{device.os}}</strong></div>
+    <div class="span6"><strong>OS Version </strong> {{device.os_version}}</div>
+</div>
+<div class="row-fluid">
+    <div class="span6"><strong>Current State</strong> {{device.current_state}}</div>
+    <div class="span6"><strong>Device Owner</strong> {{device.client|default:'GAP'}}</div>
+</div>
+<div class="row-fluid">
+    <div class="span12 pagination-centered"><strong>Notes</strong></div>
+</div>
+<div class="row-fluid">
+    <textarea class="span12" rows="4" readonly="true">{{device.notes}}</textarea>
+</div>

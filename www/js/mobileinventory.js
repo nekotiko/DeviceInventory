@@ -37,9 +37,9 @@ function change_device_from_tab(device_id, to){
     tbody.append(row);
 
     if (to == 'checkedin'){
-        swap_buttons(row, 'Checkout', 'Just Returned!', function () { check_out_device(device_id)});
+        swap_buttons(row, 'Check Out', 'Just Returned!', function () { check_out_device(device_id)});
     }else{
-        swap_buttons(row, 'Check it in', $('#user_nickname').val(), function () { check_in_device(device_id)});
+        swap_buttons(row, 'Check In', $('#user_nickname').val(), function () { check_in_device(device_id)});
     }
 }
 

@@ -12,9 +12,9 @@ class MainHandler(webapp2.RequestHandler):
         if not user:
             self.redirect(users.create_login_url("/"))
         else:
-            checked_in = models.Device.gql("WHERE current_state = :1", models.DeviceStates.CHECKED_IN).run()
+            checked_in = models.Device.gql("WHERE current_state = :1 order by family", models.DeviceStates.CHECKED_IN).run()
 
-            checked_out = models.Device.gql("WHERE current_state = :1", models.DeviceStates.CHECKED_OUT).run()
+            checked_out = models.Device.gql("WHERE current_state = :1 order by family", models.DeviceStates.CHECKED_OUT).run()
             params = {'checked_in': checked_in,
                       'checked_out': checked_out}
 

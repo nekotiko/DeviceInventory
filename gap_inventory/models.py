@@ -25,7 +25,7 @@ class Device(db.Model):
 
 
     def get_device_name(self):
-        return "%s - %s (%s)"%(self.brand, self.family, self.model)
+        return "%s %s (%s)"%(self.family, self.model, self.brand)
 
     def get_last_used(self):
         """ Return last time somebody used the device """

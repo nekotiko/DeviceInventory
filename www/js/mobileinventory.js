@@ -13,7 +13,6 @@
 function check_out_device(device_id){
     $.post("/checkout_device", { device_id: device_id },
       function callback(data){
-          console.log(data);
           change_device_from_tab(device_id,"checkedout");
       });
 }
@@ -44,7 +43,7 @@ function change_device_from_tab(device_id, to){
 }
 
 function swap_buttons(row, new_button_txt, second_row_txt, new_function) {
-    row.children('td').eq(2).html(second_row_txt);
+    row.children('td').eq(3).html(second_row_txt);
     row.find('button').html(new_button_txt);
     row.find('button').removeProp('onclick');
     row.find('button').unbind('click');
@@ -56,6 +55,18 @@ function enable_client(){
     $('#client').prop('disabled',!$('#belongs_to_client').is(':checked'));
 }
 
+
+function filter_by(text){
+
+    var regex = new RegExp( text + "\.*", 'gi');
+    $('tr[id^="row-id"]').each(function(index, row){
+      $(row).show();
+      var text = $($(row).find("td")[1]).html();
+      if (!text.match(regex)){
+         $(row).hide()
+      }
+  });
+}
 
 function add_me_to_the_queue(device_id){
 

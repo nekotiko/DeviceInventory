@@ -24,7 +24,7 @@
             <div class="row-fluid">
                <div class="span12">
                    <div class="input-append">
-                    <input class="span3" id="filterby" type="text" placeholder="Filter By Device" onkeyup="filter_by($(this).val())">
+                    <input class="span3" id="filterby" type="text" placeholder="Filter By Device Or Asset ID" onkeyup="filter_by($(this).val())">
                        <span class="add-on"><a href="javascript:$('#filterby').val('');filter_by('')"><i class="icon-remove-sign"></i></a></span>
                        </div>
                </div>
@@ -45,7 +45,7 @@
                         {% for device in checked_in %}
                             <tr id="row-id-{{device.key.id}}">
                                 <td>
-                                    <a data-load-remote="/device_details/{{device.key.id}}" data-remote-target="#display_project_modal .modal-body" data-target="#display_project_modal" data-toggle="modal"  role="button" class="btn" ><i class="icon-eye-open"></i></a>
+                                    <a data-load-remote="/device_details/{{device.key.id}}" data-remote-target="#display_project_modal .modal-body" data-target="#display_project_modal" data-toggle="modal"  role="button" class="btn" ><i class="icon-zoom-in"></i></a>
                                     {{device.gap_asset_id }}
                                 </td>
                                 <td>{{device.get_device_name }}</td>
@@ -72,7 +72,7 @@
                         <tbody id="checkedout-body">
                         {% for device in checked_out %}
                             <tr id="row-id-{{device.key.id}}" >
-                                <td><a data-load-remote="/device_details/{{device.key.id}}" data-remote-target="#display_project_modal .modal-body"  data-target="#display_project_modal" data-toggle="modal" role="button" class="btn" ><i class="icon-eye-open"></i></a>
+                                <td><a data-load-remote="/device_details/{{device.key.id}}" data-remote-target="#display_project_modal .modal-body"  data-target="#display_project_modal" data-toggle="modal" role="button" class="btn" ><i class="icon-zoom-in"></i></a>
                                     {{device.gap_asset_id }}
                                 </td>
                                 <td>{{device.get_device_name }}</td>
@@ -84,7 +84,9 @@
                                     {% else %}
                                         <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#developer_notes">Put me in the Queue</button>
                                     {% endif %}
-
+                                    {% if is_admin %}
+                                        <button type="button" class="btn btn-primary" onclick="check_in_device({{device.key.id}})">Force Return</button>
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}

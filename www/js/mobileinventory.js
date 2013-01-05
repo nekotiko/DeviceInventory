@@ -61,8 +61,10 @@ function filter_by(text){
     var regex = new RegExp( text + "\.*", 'gi');
     $('tr[id^="row-id"]').each(function(index, row){
       $(row).show();
+      var assetId = $($(row).find("td")[0]).html();
       var text = $($(row).find("td")[1]).html();
-      if (!text.match(regex)){
+      if (!assetId.match(regex) &&
+          !text.match(regex)){
          $(row).hide()
       }
   });

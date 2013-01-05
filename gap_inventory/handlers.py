@@ -42,6 +42,7 @@ class CheckoutHandler(webapp2.RequestHandler):
             device = models.Device.get_by_id([int(device_id)])[0]
             device.current_state = models.DeviceStates.CHECKED_OUT
             device.borrower = users.get_current_user().nickname()
+            device.borrower_email = users.get_current_user().email()
             device.save()
 
             borrow = models.Check_Out(parent=device)
@@ -85,6 +86,20 @@ class DeviceInfoHandler(webapp2.RequestHandler):
         else:
             device = models.Device.get_by_id([int(device_id)])[0]
             self.response.write(template.render("templates/includes/display_project_info.html",{'device': device}))
+
+
+class CheckBorrowLength(webapp2.RequestHandler):
+
+    def get(self):
+        query = models.Device.gql("SELECT * FROM Check_Out where check_in = null")
+
+        for borrow in query:
+            pass
+
+
+#
+# Util functions
+#
 
 def add_general_info(params):
     params['is_admin'] = users.is_current_user_admin()

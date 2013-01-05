@@ -53,9 +53,10 @@ class Check_Out(db.Model):
     """
     Represent the action of take a cellphone form the storage
     """
-    borrower = db.UserProperty(auto_current_user_add=True)
-    check_out = db.DateTimeProperty()
-    check_in  = db.DateTimeProperty()
+    borrower           = db.UserProperty(auto_current_user_add=True)
+    borrower_email     = db.EmailProperty()
+    check_out          = db.DateTimeProperty()
+    check_in           = db.DateTimeProperty()
 
 class Queue(db.Model):
     pass

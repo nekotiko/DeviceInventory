@@ -13,4 +13,7 @@ handlers:
   login: required
   auth_fail_action: redirect
 
+libraries:
+- name: ssl
+  version: latest
 

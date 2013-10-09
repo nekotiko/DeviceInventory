@@ -51,7 +51,11 @@
                                 <td>{{device.get_device_name }}</td>
                                 <td class="hidden-phone">{{device.get_os_details }}</td>
                                 <td>{{device.get_last_used }}</td>
-                                <td><button type="button" class="btn btn-primary" onclick="check_out_device({{device.key.id}})">Check Out</button></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default" onclick="check_out_device({{device.key.id}})">Check Out</button>
+                                    </div>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -79,14 +83,17 @@
                                 <td class="hidden-phone">{{device.get_os_details }}</td>
                                 <td>{{device.borrower }}</td>
                                 <td>
-                                    {% if device.do_i_have_the_device %}
-                                        <button type="button" class="btn btn-primary" onclick="check_in_device({{device.key.id}})">Check In</button>
-                                    {% else %}
-                                        <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#developer_notes">Put me in the Queue</button>
-                                    {% endif %}
-                                    {% if is_admin %}
-                                        <button type="button" class="btn btn-primary" onclick="check_in_device({{device.key.id}})">Force Return</button>
-                                    {% endif %}
+                                    <div class="btn-group">
+                                        {% if device.do_i_have_the_device %}
+                                            <button type="button" class="btn btn-default" onclick="check_in_device({{device.key.id}})">Check In</button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-default"  data-toggle="modal" data-target="#developer_notes">Put me in the Queue</button>
+                                            <button type="button" class="btn btn-default" onclick="notify_device({{device.key.id}})">Emergency Return</button>
+                                        {% endif %}
+                                        {% if is_admin %}
+                                            <button type="button" class="btn btn-default" onclick="check_in_device({{device.key.id}})">Force Return</button>
+                                        {% endif %}
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}

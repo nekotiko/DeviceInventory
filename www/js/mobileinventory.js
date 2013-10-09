@@ -26,6 +26,14 @@ function check_in_device(device_id){
       });
 }
 
+/* Notify to device */
+function notify_device(device_id){
+    $.post("/notify_device", { device_id: device_id },
+      function callback(data){
+           /* TODO: Display Modal message not an alert*/
+           alert(data);
+      });
+}
 
 
 function change_device_from_tab(device_id, to){

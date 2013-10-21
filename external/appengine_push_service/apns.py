@@ -194,6 +194,10 @@ class Payload(object):
             d['badge'] = int(self.badge)
         
         d = { 'aps': d }
+
+        if not self.custom:
+            self.custom = {}
+
         d.update(self.custom)
         return d
     

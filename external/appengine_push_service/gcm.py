@@ -150,6 +150,7 @@ class GCM(object):
         headers = {
             'Authorization': 'key=%s' % self.api_key,
         }
+
         # Default Content-Type is defaulted to application/x-www-form-urlencoded;charset=UTF-8
         if is_json:
             headers['Content-Type'] = 'application/json'

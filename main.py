@@ -3,7 +3,8 @@ from gap_inventory import models
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
 from gap_inventory.handlers import handlers
-from gap_inventory.handlers import notify_handler
+from gap_inventory.handlers import push_notification_handler
+from gap_inventory.handlers import mobile_handler
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -29,8 +30,10 @@ app = webapp2.WSGIApplication([
     (r'/adddevice', handlers.AddDeviceHandler),
     (r'/checkout_device', handlers.CheckoutHandler),
     (r'/checkin_device', handlers.CheckinHandler),
-    (r'/notify_device', notify_handler.NotifyHandler),
-    (r'/push_to_android', notify_handler.NotifyHandler),
+    (r'/notify_device', push_notification_handler.PushNotificationHandler),
+    (r'/checkDevice', mobile_handler.MobileHandler),
+    (r'/checkInGlobalNotifier', push_notification_handler.CheckInGlobalNotifierHandler),
+    (r'/checkOutGlobalNotifier', push_notification_handler.CheckOutGlobalNotifierHandler),
     webapp2.Route(r'/device_details/<device_id:\d+>',handler=handlers.DeviceInfoHandler,name="device-details")
 ], debug=True)
 

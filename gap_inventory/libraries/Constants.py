@@ -5,22 +5,42 @@ const.IOS_OS_NAME = "iOS"
 const.ANDROID_OS_NAME = "Android"
 
 #Custom messages
-const.MESSAGE_EMERGENCY_RETURN = "User %s needs the device asap"
+const.MESSAGE_EMERGENCY_RETURN = "Current device is required by %s"
 const.MESSAGE_REMINDER_CHECK_IN = "Please check in the device, after you use it"
 const.MESSAGE_REMINDER_CHECK_OUT = "Please check out the device, before you use it"
 const.MESSAGE_ERROR_NOTIFICATION_SERVICE = "Error device %s has no notification service"
-const.MESSAGE_NOTIFYING = "Notifying to %s"
+const.MESSAGE_ERROR_NO_TOKEN = "Current device has no token registered"
+const.MESSAGE_ERROR_NO_TOKEN_BUT_EMAIL = const.MESSAGE_ERROR_NO_TOKEN \
+                                         + "but, an email was sent to the borrower's account"
+const.MESSAGE_ERROR_CHECK_NO_ASSET_ID = "There was en error when trying to check a device status - No Asset Id provided"
+const.MESSAGE_ERROR_CHECK_DEVICE = "There was en error when trying to check a device status --AssetId: #%s"
+
+const.MESSAGE_ERROR_UPDATE_DEVICE = "There was en error when trying to update a device status --AssetId: #%s"
+const.MESSAGE_ERROR_UPDATE_DEVICE_NO_ASSET = "There was en error when trying to update a device status"
+const.RESPONSE_FORMAT_CHECK_STATUS = '{"%s": "%s"}'
+const.MESSAGE_NOTIFYING = "Notified to %s %s"
 
 #Custom Messages Keys
 const.KEY_PLATFORM = "platform"
 const.KEY_MESSAGE = "message"
 const.KEY_TOKEN = "token"
 const.KEY_BADGE = "badge"
+const.KEY_CHECK_STATE = "checkState"
+const.KEY_EMAIL = "email"
+const.KEY_ASSET_ID = "assetID"
+const.KEY_TOKEN_ID = "tokenId"
+const.KEY_OS_VERSION = "osVersion"
+const.KEY_OS_NAME = "osName"
+const.KEY_STATUS = "status"
+const.KEY_LOGGED_USER = "loggedUser"
+
+#Custom value keys
+const.VALUE_NO_USER = "NO_USER"
 
 #Custom Email
-const.EMAIL_SENDER = "MobileGap Support <mobilegap@gmail.com>"
+const.EMAIL_SENDER = "MobileGap Support <rmadrigal@growthaccelerationpartners.com>"
 const.EMAIL_SUBJECT = "Device is required as soon as possible"
-
+const.EMAIL_DOMAIN = "@growthaccelerationpartners.com"
 
 
 #GCM Config attributes

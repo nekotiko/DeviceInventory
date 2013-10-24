@@ -32,6 +32,7 @@ app = webapp2.WSGIApplication([
     (r'/checkin_device', handlers.CheckinHandler),
     (r'/notify_device', push_notification_handler.PushNotificationHandler),
     (r'/checkDevice', mobile_handler.MobileHandler),
+    (r'/checkStatus', mobile_handler.MobileStatusHandler),
     (r'/checkInGlobalNotifier', push_notification_handler.CheckInGlobalNotifierHandler),
     (r'/checkOutGlobalNotifier', push_notification_handler.CheckOutGlobalNotifierHandler),
     webapp2.Route(r'/device_details/<device_id:\d+>',handler=handlers.DeviceInfoHandler,name="device-details")

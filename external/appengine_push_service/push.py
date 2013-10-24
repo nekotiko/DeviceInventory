@@ -105,7 +105,6 @@ def sendMulticastGcmMessage(gcm_reg_ids, gcmmessage):
 
 def send_single_gcm_message(message, token):
     gcm_reg_ids=[token]
-    print "Message %s" % message
     sendMulticastGcmMessage(gcm_reg_ids, message)
 
 def send_message(request):

@@ -34,11 +34,8 @@ const.KEY_OS_NAME = "osName"
 const.KEY_STATUS = "status"
 const.KEY_LOGGED_USER = "loggedUser"
 
-#Custom value keys
-const.VALUE_NO_USER = "NO_USER"
-
 #Custom Email
-const.EMAIL_SENDER = "MobileGap Support <rmadrigal@growthaccelerationpartners.com>"
+const.EMAIL_SENDER = "MobileGap Support <mobilegap@growthaccelerationpartners.com>"
 const.EMAIL_SUBJECT = "Device is required as soon as possible"
 const.EMAIL_DOMAIN = "@growthaccelerationpartners.com"
 

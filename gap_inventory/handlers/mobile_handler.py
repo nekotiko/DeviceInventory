@@ -39,23 +39,26 @@ def check_out_device(self, pEmail, pAssetId, pTokenId):
         return ResponseCode.NO_DEVICE
     else:
         device.current_state = models.DeviceStates.CHECKED_OUT
-        if pEmail.find("@") == -1 :
-            device.borrower = pEmail
-            device.borrower_email = pEmail + const.EMAIL_DOMAIN
-        else:
-            device.borrower = pEmail[0:pEmail.find("@")]
-            device.borrower_email = pEmail
-
-        if pTokenId:
-            device.token_id = pTokenId
-        device.save()
 
         borrow = models.Check_Out(parent=device)
-        borrow.check_out = datetime.datetime.now()
-        borrow.put()
+        if borrow:
+            if pEmail.find("@") == -1 :
+                device.borrower = pEmail
+                device.borrower_email = pEmail + const.EMAIL_DOMAIN
+            else:
+                device.borrower = pEmail[0:pEmail.find("@")]
+                device.borrower_email = pEmail
 
-        return ResponseCode.SUCCESS
+            if pTokenId:
+                device.token_id = pTokenId
+            device.save()
 
+            borrow.check_out = datetime.datetime.now()
+            borrow.put()
+
+            return ResponseCode.SUCCESS
+        else:
+            return ResponseCode.ALREADY_CHECK_OUT
 
 def check_in_device(self, pAssetId, pTokenId):
     device = get_device_by_asset_id(pAssetId)
@@ -110,7 +113,7 @@ class MobileStatusHandler(webapp2.RequestHandler):
                             result = const.RESPONSE_FORMAT_CHECK_STATUS % \
                                      (const.KEY_LOGGED_USER, device.borrower[0:device.borrower.find("@")])
                     else:
-                        result = const.RESPONSE_FORMAT_CHECK_STATUS % (const.KEY_LOGGED_USER, const.VALUE_NO_USER)
+                        result = const.RESPONSE_FORMAT_CHECK_STATUS % (const.KEY_LOGGED_USER, ResponseCode.NO_USER)
         except:
             if(token and token[const.KEY_ASSET_ID]):
                 logging.error(const.MESSAGE_ERROR_CHECK_DEVICE % token[const.KEY_ASSET_ID])

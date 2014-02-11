@@ -26,30 +26,19 @@ function check_in_device(device_id){
       });
 }
 
+/* Notify to device */
+function notify_device(device_id){
+    $.post("/notify_device", { device_id: device_id },
+      function callback(data){
+           $('#notification_message').text(data);
+           $('#notification_alert').modal('show');
+      });
+}
 
 
 function change_device_from_tab(device_id, to){
-    var row = $('#row-id-' + device_id);
-    row.remove();
-
-    var tbody = (to == 'checkedin')? $("#checkedin-body"):$("#checkedout-body");
-    tbody.append(row);
-
-    if (to == 'checkedin'){
-        swap_buttons(row, 'Check Out', 'Just Returned!', function () { check_out_device(device_id)});
-    }else{
-        swap_buttons(row, 'Check In', $('#user_nickname').val(), function () { check_in_device(device_id)});
-    }
+    location.reload();
 }
-
-function swap_buttons(row, new_button_txt, second_row_txt, new_function) {
-    row.children('td').eq(3).html(second_row_txt);
-    row.find('button').html(new_button_txt);
-    row.find('button').removeProp('onclick');
-    row.find('button').unbind('click');
-    row.find('button').bind('click', new_function);
-}
-
 
 function enable_client(){
     $('#client').prop('disabled',!$('#belongs_to_client').is(':checked'));

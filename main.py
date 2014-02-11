@@ -1,9 +1,11 @@
 import webapp2
-
 from gap_inventory import models
 from google.appengine.ext.webapp import template
-from gap_inventory import  handlers
 from google.appengine.api import users
+from gap_inventory.handlers import handlers
+from gap_inventory.handlers import push_notification_handler
+from gap_inventory.handlers import mobile_handler
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -24,10 +26,15 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-                                (r'/', MainHandler),
-                                (r'/adddevice',handlers.AddDeviceHandler),
-                                (r'/checkout_device',handlers.CheckoutHandler),
-                                (r'/checkin_device',handlers.CheckinHandler),
-                                webapp2.Route(r'/device_details/<device_id:\d+>',handler=handlers.DeviceInfoHandler,name="device-details")],
-                             debug=True)
+    (r'/', MainHandler),
+    (r'/adddevice', handlers.AddDeviceHandler),
+    (r'/checkout_device', handlers.CheckoutHandler),
+    (r'/checkin_device', handlers.CheckinHandler),
+    (r'/notify_device', push_notification_handler.PushNotificationHandler),
+    (r'/checkDevice', mobile_handler.MobileHandler),
+    (r'/checkStatus', mobile_handler.MobileStatusHandler),
+    (r'/checkInGlobalNotifier', push_notification_handler.CheckInGlobalNotifierHandler),
+    (r'/checkOutGlobalNotifier', push_notification_handler.CheckOutGlobalNotifierHandler),
+    webapp2.Route(r'/device_details/<device_id:\d+>',handler=handlers.DeviceInfoHandler,name="device-details")
+], debug=True)
 

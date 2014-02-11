@@ -5,12 +5,17 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /www
-  static_dir: www
+    - url: /www
+      static_dir: www
 
-- url: /.*
-  script: main.app
-  login: required
-  auth_fail_action: redirect
+    - url: /.*
+      script: main.app
+      login: required
+      auth_fail_action: redirect
 
+libraries:
+    - name: webapp2
+      version: "2.5.2"
 
+    - name: ssl
+      version: latest

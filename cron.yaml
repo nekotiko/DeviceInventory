@@ -1,0 +1,8 @@
+cron:
+- description: Morning reminder notification
+  url: /checkOutGlobalNotifier
+  schedule: every mon, tue, wed, thu, fri 07:00
+
+- description: Afternoon reminder notification
+  url: /checkInGlobalNotifier
+  schedule: every mon, tue, wed, thu, fri 17:00

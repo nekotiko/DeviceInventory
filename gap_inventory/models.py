@@ -22,6 +22,7 @@ class Device(db.Model):
     borrower           = db.StringProperty()
     returned           = db.DateTimeProperty()
     client             = db.StringProperty()
+    token_id           = db.StringProperty()
 
 
     def get_device_name(self):
